@@ -1,0 +1,45 @@
+{
+  "name": "nftmarket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "ganache": "npx ganache-cli",
+    "lint": "yarn prettier ./test/*.ts --check",
+    "lint:fix": "yarn prettier ./test/*.ts --write",
+    "clean": "rimraf ./build/",
+    "precompile": "yarn clean",
+    "compile": "waffle .waffle.json",
+    "compile:truffle": "truffle compile",
+    "migrate:testnet": "truffle migrate --reset --f 2 --to 5 --network testnet",
+    "migrate:mumbai": "truffle migrate --network mumbai",
+    "migrate:dev": "truffle migrate --reset --network development",
+    "verify:pokeball": "truffle run verify PokeBall --network testnet",
+    "verify:pokenft": "truffle run verify PokeBallNFT --network testnet",
+    "verify:pokestaking": "truffle run verify LockedStaking --network testnet",
+    "flatten": "truffle-flattener ./contracts/Factory.sol --output ./contract_flatten/Factory_flat.sol",
+    "pretest": "yarn compile",
+    "test": "mocha",
+    "prepublishOnly": "yarn test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.3.1",
+    "chai-as-promised": "^7.1.1",
+    "chai-bn": "^0.3.0",
+    "dotenv": "^10.0.0",
+    "truffle-plugin-verify": "^0.5.15",
+    "web3": "^1.5.2"
+  },
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.5.0",
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
+    "chai": "^4.3.4"
+  }
+}
